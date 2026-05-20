@@ -195,6 +195,7 @@ class Gemma4TextConfig(PreTrainedConfig):
     def __post_init__(self, **kwargs):
         if self.use_bidirectional_attention == "all":
             self.sliding_window = (self.sliding_window // 2) + 1  # due to fa we set exclusive bounds
+            self.is_causal = False
 
         if self.layer_types is None:
             sliding_window_pattern = 6  # by default 5:1
